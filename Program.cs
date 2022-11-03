@@ -33,13 +33,11 @@ namespace authMe
             {
                 return false;
             }
-            Regex p = new Regex("[A-Z]"); // Проверка на верхний регистр
-            MatchCollection total = p.Matches(password);
-            if (total.Count > 0)
+            if (!Regex.IsMatch(password, "[A-Z]")) // Проверка на верхний регистр
             {   
-                return true;
+                return false;
             }
-            return false;        
+            return true;        
         }
         static void Main(string[] args)
         {
