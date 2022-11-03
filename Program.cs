@@ -10,14 +10,13 @@ namespace authMe
     {
         static bool isValidLogin(string login)
         {
-            int lenght = login.Length;
-            if (lenght < 6 || lenght > 20) // Длина строки
+            
+            if (login.Length < 6 || login.Length > 20) // Длина строки
             {
                 return false;
             }
-            Regex l = new Regex("[ A-Z ]"); // Если есть заглавные буквы или пробелы
-            Match m = l.Match(login);
-            if (m.Success)
+            
+            if (Regex.IsMatch(login, "[A-Z ]")) // Если есть заглавные буквы или пробелы
             {
                 return false;
             }
@@ -26,18 +25,11 @@ namespace authMe
 
         static bool isValidPassword(string password, string login)
         {
-            int lenght = password.Length;
-            if (lenght < 6 || lenght > 20) // Длина строки
+            if (password.Length < 6 || password.Length > 20) // Длина строки
             {
                 return false;
-            }
-            if (password == login) // Сравнение строк логина и пароля
-            {
-                return false;
-            }
-            Regex w = new Regex(" "); // Проверка на пробел.ы
-            Match m = w.Match(password);
-            if (m.Success)
+            } 
+            if (Regex.IsMatch(password, " ")) // Проверка на пробел.ы
             {
                 return false;
             }
